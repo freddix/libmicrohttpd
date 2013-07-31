@@ -1,11 +1,11 @@
 Summary:	Embeded HTTP server library
 Name:		libmicrohttpd
-Version:	0.9.27
+Version:	0.9.28
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/libmicrohttpd/%{name}-%{version}.tar.gz
-# Source0-md5:	a10496b7f1b495aaf6897584da52f51b
+# Source0-md5:	16c3cb66c839c6f929677471401a5b53
 URL:		http://www.gnu.org/software/libmicrohttpd/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -13,8 +13,12 @@ BuildRequires:	curl-devel
 BuildRequires:	gnutls-devel
 BuildRequires:	libgcrypt-devel
 BuildRequires:	libtool
+BuildRequires:	openssl-devel
 BuildRequires:	texinfo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+# FIXME
+%define		skip_post_check_so	libmicrospdy.so.*
 
 %description
 GNU libmicrohttpd is a small C library that is supposed to make it
@@ -79,4 +83,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_infodir}/libmicrohttpd-tutorial.info*
 %{_mandir}/man3/libmicrohttpd.3*
 %{_pkgconfigdir}/libmicrohttpd.pc
+
+%if 0
+/usr/bin/demo
+/usr/bin/microspdy2http
+/usr/include/microspdy.h
+/usr/lib/libmicrospdy.la
+/usr/lib/libmicrospdy.so
+/usr/lib/libmicrospdy.so.0
+/usr/lib/libmicrospdy.so.0.0.0
+%endif
 
