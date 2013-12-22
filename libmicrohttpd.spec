@@ -1,11 +1,12 @@
 Summary:	Embeded HTTP server library
 Name:		libmicrohttpd
-Version:	0.9.31
+Version:	0.9.33
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/libmicrohttpd/%{name}-%{version}.tar.gz
-# Source0-md5:	40453603aef1a8c0bb4957ec65ab888d
+# Source0-md5:	013b10f9de1cda5448b29c81305354a3
+Patch0:		%{name}-link.patch
 URL:		http://www.gnu.org/software/libmicrohttpd/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -16,9 +17,6 @@ BuildRequires:	libtool
 BuildRequires:	openssl-devel
 BuildRequires:	texinfo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-# FIXME
-%define		skip_post_check_so	libmicrospdy.so.*
 
 %description
 GNU libmicrohttpd is a small C library that is supposed to make it
@@ -34,6 +32,7 @@ Header files to develop libmicrohttpd applications.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__libtoolize}
@@ -71,26 +70,18 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
+%attr(755,root,root) %{_bindir}/microspdy2http
 %attr(755,root,root) %ghost %{_libdir}/libmicrohttpd.so.10
+%attr(755,root,root) %ghost %{_libdir}/libmicrospdy.so.0
 %attr(755,root,root) %{_libdir}/libmicrohttpd.so.*.*.*
+%attr(755,root,root) %{_libdir}/libmicrospdy.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libmicrohttpd.so
-%{_libdir}/libmicrohttpd.la
-%{_includedir}/microhttpd.h
-%{_infodir}/libmicrohttpd.info*
-%{_infodir}/libmicrohttpd-tutorial.info*
+%attr(755,root,root) %{_libdir}/*.so
+%{_libdir}/*.la
+%{_includedir}/*.h
+%{_infodir}/libmicrohttpd*.info*
 %{_mandir}/man3/libmicrohttpd.3*
 %{_pkgconfigdir}/libmicrohttpd.pc
-
-%if 0
-/usr/bin/demo
-/usr/bin/microspdy2http
-/usr/include/microspdy.h
-/usr/lib/libmicrospdy.la
-/usr/lib/libmicrospdy.so
-/usr/lib/libmicrospdy.so.0
-/usr/lib/libmicrospdy.so.0.0.0
-%endif
 
