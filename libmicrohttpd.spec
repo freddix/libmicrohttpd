@@ -1,11 +1,11 @@
 Summary:	Embeded HTTP server library
 Name:		libmicrohttpd
-Version:	0.9.34
+Version:	0.9.35
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/libmicrohttpd/%{name}-%{version}.tar.gz
-# Source0-md5:	2947eee13c2c8affb95023a0cb6fda0c
+# Source0-md5:	a9d747b6666879569036bb791653a1c7
 Patch0:		%{name}-link.patch
 URL:		http://www.gnu.org/software/libmicrohttpd/
 BuildRequires:	autoconf
@@ -55,6 +55,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -79,9 +81,8 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/*.so
-%{_libdir}/*.la
 %{_includedir}/*.h
 %{_infodir}/libmicrohttpd*.info*
 %{_mandir}/man3/libmicrohttpd.3*
-%{_pkgconfigdir}/libmicrohttpd.pc
+%{_pkgconfigdir}/*.pc
 
