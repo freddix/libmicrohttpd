@@ -1,7 +1,7 @@
 Summary:	Embeded HTTP server library
 Name:		libmicrohttpd
 Version:	0.9.37
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/libmicrohttpd/%{name}-%{version}.tar.gz
