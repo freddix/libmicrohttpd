@@ -1,11 +1,11 @@
 Summary:	Embeded HTTP server library
 Name:		libmicrohttpd
-Version:	0.9.38
+Version:	0.9.39
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/libmicrohttpd/%{name}-%{version}.tar.gz
-# Source0-md5:	b72efbfe7f290846015d460aea7091fe
+# Source0-md5:	86c9cb728b4bd4fcb8aeca18ba6c0548
 Patch0:		%{name}-link.patch
 URL:		http://www.gnu.org/software/libmicrohttpd/
 BuildRequires:	autoconf
